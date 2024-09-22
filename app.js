@@ -6,6 +6,11 @@ const app = express();
 app.use(bodyParser.json());
 const upload = multer();
 
+// Root URL Route
+app.get('/', (req, res) => {
+    res.send('Welcome to the Bajaj OT Backend API');
+});
+
 // POST /bfhl
 app.post('/bfhl', upload.none(), (req, res) => {
     const { data, file_b64 } = req.body;
@@ -15,14 +20,14 @@ app.post('/bfhl', upload.none(), (req, res) => {
 
     const response = {
         is_success: true,
-        user_id: "arjun_pratap_17022003", // Use your name and birthdate
+        user_id: "arjun_pratap_17022003", 
         email: "ar5845@srmist.edu.in",
         roll_number: "RA2111003011111",
         numbers: numbers,
         alphabets: alphabets,
         highest_lowercase_alphabet: highestLowercaseAlphabet ? [highestLowercaseAlphabet] : [],
         file_valid: !!file_b64,
-        file_mime_type: "image/png", // Assuming PNG for simplicity
+        file_mime_type: "image/png", 
         file_size_kb: file_b64 ? Buffer.byteLength(file_b64, 'base64') / 1024 : 0
     };
 
